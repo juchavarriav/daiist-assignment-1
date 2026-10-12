@@ -16,10 +16,13 @@ rows/columns, and why did you pick it.*
 
 ## Business / real-life framing
 
-*The hypothetical scenario this model serves, and what that scenario implies
-for how you built the pipeline — target definition, whether a time-based
-split was necessary and why (or why not), which metric should drive the
-decision threshold and why.*
+This model would be used by the operations team of the company that runs the bike stations in the city. They would use it to decide how many bikes to have available in the next hours. Each row in the data is the total number of rentals in the whole system in one hour, so the model tells us how much demand to expect, not where to put the bikes.
+
+Predicting too low is worse than predicting too high. If we predict too low, there may be no bikes at the stations and we lose customers. If we predict too high, we only have some idle bikes, which costs much less.
+
+Because the model is meant to predict future hours, the data is split by time and not randomly. Training is January 2011 to June 2012, validation is July to September 2012 (used to choose the learning rate and the regularization), and test is October to December 2012, used only once at the end. A random split would be cheating because the hour next to a test hour could be in the training set, and neighboring hours are almost the same, so the test would be too easy.
+
+The main metric is MAE, the average number of bikes the model misses by in one hour, which is easy to explain. I also report RMSE, which punishes big misses more, like in rush hour. MAE and RMSE treat predicting too low and too high the same, so I also report the average signed error (actual minus predicted, positive means too low) and the share of hours where the model predicts too low, to check the error that matters most.
 
 ## Data preparation & feature engineering
 
