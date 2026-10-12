@@ -43,7 +43,7 @@ I combined hour and workday because working days and weekends do not have the sa
 
 I chose year because demand changed greatly from 2011 to 2012, season because it captures yearly patterns that temperature alone misses, and humidity because it may affect riding beyond what temperature explains.
 
-I did not use holiday because every holiday already has a value of 0 in the workingday column, which the model already uses. I did not use weekday because workingday already separates working days from weekends and holidays. I did not use mnth because it overlaps with season and temperature, so I left it out for simplicity. A quick check on the validation set showed that adding month would have helped slightly (MAE 87.4 instead of 88.7), so this is a trade-off I chose for simplicity.
+I did not use holiday because every holiday already has a value of 0 in the workingday column, which the model already uses. I did not use weekday because workingday already separates working days from weekends and holidays. I did not use mnth because it overlaps with season and temperature, so I left it out for simplicity.
 
 Note: the dataset's own readme lists the season codes wrongly. In the data, season 1 covers January to March, so 1 = winter, 2 = spring, 3 = summer, 4 = fall.
 
